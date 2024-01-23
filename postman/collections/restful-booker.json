@@ -1,0 +1,388 @@
+{
+	"info": {
+		"_postman_id": "9112ddab-b15b-45e9-8684-930184c4daae",
+		"name": "restful-booker",
+		"description": "[https://restful-booker.herokuapp.com/apidoc/index.html#api-Booking-CreateBooking](https://restful-booker.herokuapp.com/apidoc/index.html#api-Booking-CreateBooking)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "30766426-9112ddab-b15b-45e9-8684-930184c4daae"
+	},
+	"item": [
+		{
+			"name": "Booking - GetBookingIds",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8994ac48-cb16-4112-9ee1-0802068a5e2c",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "70d20e3b-82e0-4cc8-8c5b-ee833b1ccee1",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}booking",
+					"host": [
+						"{{URL}}booking"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Booking - GetBooking",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a7e3e132-6021-49ce-a93d-db9809fe923a",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "61980027-ff1d-436b-9d64-f45029f21bce",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}booking/:id",
+					"host": [
+						"{{URL}}booking"
+					],
+					"path": [
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "{{BookingID}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Booking - CreateBooking",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f7d02484-a885-4301-be9b-48032386d9fc",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.collectionVariables.set(\"BookingID\", jsonData.bookingid);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "e124d627-de18-4236-a6ce-13412e78d157",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstname\" : \"Renata\",\r\n    \"lastname\" : \"Andruszewicz\",\r\n    \"totalprice\" : 450,\r\n    \"depositpaid\" : true,\r\n    \"bookingdates\" : {\r\n        \"checkin\" : \"2024-04-01\",\r\n        \"checkout\" : \"2024-04-04\"\r\n    },\r\n    \"additionalneeds\" : \"Breakfast and lunch\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}booking",
+					"host": [
+						"{{URL}}booking"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Booking-CreateToken",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7743a6e1-8063-44fb-a964-3135c79aa545",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.collectionVariables.set(\"Cookie\", jsonData.token);\r",
+							"   "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "1d74a4d7-8fcc-4172-9d8a-40779e9a574e",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password123",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\" : \"admin\",\r\n    \"password\" : \"password123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}auth",
+					"host": [
+						"{{URL}}auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Booking - UpdateBooking",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "514ed033-6953-4875-bc96-84850c4107c8",
+						"exec": [
+							"pm.test('Status code is 200', function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Your total price is\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.totalprice).to.eql(500);\r",
+							"\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "7d92a0e0-e971-4555-9c6b-54f5a1448d2d",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "token={{Cookie}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstname\" : \"Agata\",\r\n    \"lastname\" : \"Dudkiewicz\",\r\n    \"totalprice\" : 500,\r\n    \"depositpaid\" : true,\r\n    \"bookingdates\" : {\r\n        \"checkin\" : \"2024-04-01\",\r\n        \"checkout\" : \"2024-04-04\"\r\n    },\r\n    \"additionalneeds\" : \"Breakfast and lunch all in\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}booking/:id",
+					"host": [
+						"{{URL}}booking"
+					],
+					"path": [
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "{{BookingID}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Booking - PartialUpdateBooking",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fa615c7c-47be-4e0e-85fe-61b9efb6e826",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Yournickname room2\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.lastname).to.eql(\"Andruszewicz\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "b3d2a11f-f704-4d31-a0bb-dea145243d80",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "token={{Cookie}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstname\" : \"Renata Danuta\",\r\n    \"lastname\" : \"Andruszewicz\",\r\n    \"totalprice\" : 640,\r\n    \"depositpaid\" : true,\r\n    \"additionalneeds\" : \"Breakfast and lunch and gift card\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}booking/:id",
+					"host": [
+						"{{URL}}booking"
+					],
+					"path": [
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "{{BookingID}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New  Booking - DeleteBooking",
+			"id": "20036c09-3a8a-4db7-ac40-f2c9e63ccc25",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "token={{Cookie}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{URL}}booking/1?Booking={{BookingID}}",
+					"host": [
+						"{{URL}}booking"
+					],
+					"path": [
+						"1"
+					],
+					"query": [
+						{
+							"key": "Booking",
+							"value": "{{BookingID}}",
+							"type": "text"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "19ed6cd0-b151-4641-be67-af30d6591a30",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "f270e275-f4bc-4462-9997-35a4d69c6e0b",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "c0dbd7b8-79e1-49c2-bf1c-b4729771bf47",
+			"key": "URL",
+			"value": ""
+		},
+		{
+			"id": "f3d1e908-8626-414e-b6f6-08ffcea7f61a",
+			"key": "BookingID",
+			"value": ""
+		},
+		{
+			"id": "ed4d1dd6-2a0a-4682-ac73-6f853654660a",
+			"key": "Cookie",
+			"value": ""
+		}
+	]
+}
